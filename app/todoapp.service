@@ -1,11 +1,16 @@
 [Unit]
 Description=todoapp service
+After=network.target
 
 [Service]
+User=azur1
 WorkingDirectory=/app
 ExecStart=/app/start.sh
-StandardOutput=syslog
-StandardError=syslog
+Restart=always
+RestartSec=5s
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=todoapp
 
 [Install]
 WantedBy=multi-user.target
